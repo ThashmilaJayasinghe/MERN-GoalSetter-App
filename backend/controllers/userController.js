@@ -74,13 +74,18 @@ const loginUser = asyncHandler(async (req, res) => {
 //  @route  GET/api/users/me
 //  @access Private
 const getMe = asyncHandler(async (req, res) => {
-    const {_id, name, email} = await User.findById(req.user.id)
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
+    //The commented code below is not needed cuz we have already found the id using the token in authMiddleware.js
+    
+    // const {_id, name, email} = await User.findById(req.user.id)
+
+    // res.status(200).json({
+    //     id: _id,
+    //     name,
+    //     email
+    // })
+
+    res.status(200).json(req.user)
 })
 
 // Generate JWT
